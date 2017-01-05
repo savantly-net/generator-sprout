@@ -1,0 +1,23 @@
+<div data-ng-controller="<%= slugifiedPluralName %>Controller" data-ng-init="findOne()">
+	<h1>Edit <%= humanizedSingularName %></h1>
+	<div>
+		<form name="editForm" layout="column" data-ng-submit="editForm.$valid && save(true)" novalidate>
+
+			<md-input-container> 
+				<label>ID</label> 
+				<input type="text" ng-model="item.id" required> 
+			</md-input-container>
+
+			<div class="form-group">
+				<input type="submit" class="btn btn-primary" value="Submit" /> 
+				<input ng-click="cancel()" class="btn btn-default" value="Cancel" />
+			</div>
+			<div>
+				<a href ng-click="redirect()">Return</a>
+			</div>
+			<div data-ng-show="error" class="text-danger">
+				<strong data-ng-bind="error"></strong>
+			</div>
+		</form>
+	</div>
+</div>
