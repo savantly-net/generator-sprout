@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('<%= slugifiedPluralName %>').controller('<%= slugifiedPluralName %>Controller', ['$scope', '$rootScope', '$stateParams', '$location', '$state', 'Authentication', '<%= classifiedPluralName %>', 
+angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralName %>Controller', ['$scope', '$rootScope', '$stateParams', '$location', '$state', 'Authentication', '<%= classifiedPluralName %>', 
 	function($scope, $rootScope, $stateParams, $location, $state, Authentication, <%= classifiedPluralName %>) {
 
 		var moduleName = '<%= slugifiedPluralName %>';
