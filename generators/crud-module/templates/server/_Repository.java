@@ -1,9 +1,7 @@
-package <%= groupId %>.modules.<%= slugifiedPluralName %>;
-
-import java.util.UUID;
+package <%= groupId %>.modules.<%= camelizedPluralName %>;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface <%= capitalizedSingularName %>Repository extends PagingAndSortingRepository<<%= capitalizedSingularName %>, UUID> {
+public interface <%= classifiedSingularName %>Repository extends PagingAndSortingRepository<<%= classifiedSingularName %>, String> {
 
 }
