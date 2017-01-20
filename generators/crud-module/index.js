@@ -189,10 +189,10 @@ module.exports = Generator.extend({
 		this.log('Rendering server repositoryFile: ' + repositoryFile);
 		this.template('server/_Repository.java', repositoryFile);
 		
-		// Controller
-		var controllerFile = serverModulesFolder + this.props.classifiedSingularName + 'Controller.java';
-		this.log('Rendering server controllerFile: ' + controllerFile);
-		this.template('server/_Controller.java', controllerFile);
+		// Repository Configuration
+		var repositoryConfigurationFile = serverModulesFolder + this.props.classifiedSingularName + 'RepositoryConfiguration.java';
+		this.log('Rendering server repositoryConfigurationFile: ' + repositoryConfigurationFile);
+		this.template('server/_RepositoryConfiguration.java', repositoryConfigurationFile);
 
 	}
 });
