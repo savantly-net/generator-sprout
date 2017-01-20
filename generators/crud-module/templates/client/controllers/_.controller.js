@@ -1,8 +1,8 @@
 'use strict';
 
 
-angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralName %>Controller', ['$scope', '$rootScope', '$stateParams', '$location', '$state', 'Authentication', '<%= classifiedPluralName %>', 
-	function($scope, $rootScope, $stateParams, $location, $state, Authentication, <%= classifiedPluralName %>) {
+angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralName %>Controller', ['$scope', '$rootScope', '$stateParams', '$location', '$state', 'Authentication', 'SpringDataRestAdapter', 'GuidGen', '<%= classifiedPluralName %>', 
+	function($scope, $rootScope, $stateParams, $location, $state, Authentication, SpringDataRestAdapter, GuidGen, <%= classifiedPluralName %>) {
 
 		var moduleName = '<%= slugifiedPluralName %>';
 		var EntityService = <%= classifiedPluralName %>;
@@ -33,7 +33,7 @@ angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralNam
 		
 		$scope.findAll = function(){
 			EntityService.query().$promise.then(function(response){
-				$scope.items = response.content;
+				$scope.items = response._embedded[moduleName];
 			});
 		};
 		
@@ -48,19 +48,30 @@ angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralNam
 			}
 		};
 		
+		function saveSuccess(response) {
+			$scope.removeLoader('save');
+			$location.path(locationRedirectRoot + '/' + response.id + '/edit/' + ($stateParams.redirectState || ''));
+		}
+		
+		function saveFailure(errorResponse) {
+			$scope.error = errorResponse.data.message;
+			$scope.removeLoader('save');
+		}
+		
 		$scope.save = function(doRedirect) {
 			$scope.addLoader('save');
 			// Create new object
 			var _item = new EntityService($scope.item);
+			
+			//TODO: add related entities
+			//_item.customer = '/customers/' + _item.customer.id;
 
-			// Redirect after save
-			_item.$save(function(response) {
-				$scope.removeLoader('save');
-				if (doRedirect) $location.path(locationRedirectRoot + '/' + response.id + '/edit/' + ($stateParams.redirectState || ''));
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-				$scope.removeLoader('save');
-			});
+			if(_item.new == false){
+				_item.$update(saveSuccess, saveFailure);
+			} else {
+				_item.id = GuidGen.generate();
+				_item.$save(saveSuccess, saveFailure);
+			}
 		};
 		
 		$scope.duplicate = function(item){
@@ -80,7 +91,9 @@ angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralNam
 			EntityService.get({
 				id: $stateParams.id
 			}).$promise.then(function(item){
-				$scope.item = item;
+				SpringDataRestAdapter.process(item).then(function(processedReponse){
+					$scope.item = processedReponse;
+				});
 			});
 		};
 		

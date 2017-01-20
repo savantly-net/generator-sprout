@@ -5,9 +5,20 @@
 angular.module('<%= slugifiedPluralName %>').factory('<%= classifiedPluralName %>', ['$resource', '$http', 
 	function($resource, $http) {
 		var moduleName = '<%= slugifiedPluralName %>';
-		return $resource('/'+moduleName+'/:id', { id: '@id' }, {
+		return $resource('/api/'+moduleName, { id: '@id' }, {
 			query: {
+				isArray: false
+			},
+			update: {
+				method: 'PUT',
+				url: '/api/'+moduleName+'/:id',
+			},
+			get: {
+				url: '/api/'+moduleName+'/:id',
+			},
+			search: {
 				isArray: false,
+				url: '/api/'+moduleName+'/search/?:method'
 			}
 		});
 	}

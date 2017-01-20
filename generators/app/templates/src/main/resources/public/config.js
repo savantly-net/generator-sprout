@@ -12,7 +12,9 @@ var ApplicationConfiguration = (function() {
 	                                           'ngAnimate',  
 	                                           'ngSanitize',  
 	                                           'md.data.table',
+	                                           'angularMoment',
 	                                           'flow',
+	                                           'spring-data-rest',
 	                                           'ui.router', 'ui.bootstrap', 'ui.utils', 'ui.validate'];
 
 	// Add a new vertical module
