@@ -203,6 +203,11 @@ module.exports = Generator.extend({
 		var permissionEvaluatorFile = serverModulesFolder + this.props.classifiedSingularName + 'PermissionEvaluator.java';
 		this.log('Rendering server entityListenerFile: ' + permissionEvaluatorFile);
 		this.template('server/_PermissionEvaluator.java', permissionEvaluatorFile);
+		
+		// Entity Fixture
+		var entityFixtureFile = serverModulesFolder + this.props.classifiedSingularName + 'Fixture.java';
+		this.log('Rendering server entityFixtureFile: ' + entityFixtureFile);
+		this.template('server/_Fixture.java', entityFixtureFile);
 
 	}
 });
