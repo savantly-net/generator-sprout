@@ -69,7 +69,6 @@ angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralNam
 			if(_item.new == false){
 				_item.$update(saveSuccess, saveFailure);
 			} else {
-				_item.id = GuidGen.generate();
 				_item.$save(saveSuccess, saveFailure);
 			}
 		};
