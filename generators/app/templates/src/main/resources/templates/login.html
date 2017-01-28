@@ -1,20 +1,53 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+<html lang="en" ng-app="LoginApp" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>Login</title>
-    </head>
-    <body>
-        <div th:if="${param.error}">
-            Invalid username and password.
-        </div>
-        <div th:if="${param.logout}">
-            You have been logged out.
-        </div>
-        <form th:action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
-    </body>
+	<head>
+		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css"></link>
+	</head>
+	<body>
+				<md-content class="page-login" ng-app="LoginApp" layout="column" layout-padding="layout-padding" ng-cloak="ng-cloak">
+			<md-card flex="flex" flex-gt-sm="50" flex-gt-md="33">
+				<md-toolbar>
+				  <div class="md-toolbar-tools">
+				    <h2><span>Login</span></h2>
+				  </div>
+				</md-toolbar>
+		        <md-card-content>
+					<form name="Form"  th:action="@{/login}" method="post">
+					  <md-input-container class="md-block">
+					    <label>Login</label>
+					    <input type="text" name="username" ng-model="username" placeholder="login" required=""/>
+					    <div ng-messages="Form.username.$error" role="alert" multiple="">
+					      <div class="my-message" ng-message="required">You must supply a username.</div>
+					    </div>
+					  </md-input-container>
+					  <md-input-container class="md-block">
+					    <label>Password</label>
+					    <input type="password" name="password" ng-model="password" placeholder="password" required=""/>
+					    <div ng-messages="Form.password.$error" role="alert" multiple="">
+					      <div class="my-message" ng-message="required">You must supply a password.</div>
+					    </div>
+					  </md-input-container>
+					  <md-button class="md-raised md-primary" ng-disabled="!Form.$valid" type="submit">&nbsp; Login &nbsp;</md-button>
+					</form>
+		        </md-card-content>
+			</md-card>
+			<div th:if="${param.error}">
+			    Invalid username and password.
+			</div>
+			<div th:if="${param.logout}">
+			    You have been logged out.
+			</div>
+    	</md-content>
+    <!-- Angular Material Dependencies-->
+	</body>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-messages.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-aria.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+	<script src="//cdn.jsdelivr.net/angular-material-icons/0.4.0/angular-material-icons.min.js"></script>
+	<script>
+	var app = angular.module('LoginApp',['ngMaterial','ngAnimate','ngAria','ngMessages']);
+	</script>
 </html>

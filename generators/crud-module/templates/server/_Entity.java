@@ -1,10 +1,18 @@
 package <%= groupId %>.modules.<%= camelizedPluralName %>;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import co.intnt.modules.recommendation.<%= classifiedSingularName %>Listener;
 
 import <%= groupId %>.modules.PersistedModule;
 
 @Entity
+@EntityListeners({
+    AuditingEntityListener.class,
+    <%= classifiedSingularName %>Listener.class})
 public class <%= classifiedSingularName %> extends PersistedModule {
     
     private String name;

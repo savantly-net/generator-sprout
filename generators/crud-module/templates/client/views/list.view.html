@@ -15,10 +15,7 @@
 	<div>
 		<hr />
 		<div>
-			<div layout="row" ng-class-even="'even-row'" ng-repeat="item in items">
-				<md-input-container>
-					<md-checkbox ng-model="item.checked" />
-				</md-input-container>
+			<div layout="row" layout-align="start center" ng-class-even="'even-row'" ng-repeat="item in items">
 				<md-button class="md-raised md-warn" ng-click="deleteItem(item)">
 					<md-icon class="material-icons">clear</md-icon>
 		        </md-button>

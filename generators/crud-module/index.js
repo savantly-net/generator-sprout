@@ -193,6 +193,16 @@ module.exports = Generator.extend({
 		var repositoryConfigurationFile = serverModulesFolder + this.props.classifiedSingularName + 'RepositoryConfiguration.java';
 		this.log('Rendering server repositoryConfigurationFile: ' + repositoryConfigurationFile);
 		this.template('server/_RepositoryConfiguration.java', repositoryConfigurationFile);
+		
+		// Entity Listener
+		var entityListenerFile = serverModulesFolder + this.props.classifiedSingularName + 'Listener.java';
+		this.log('Rendering server entityListenerFile: ' + entityListenerFile);
+		this.template('server/_Listener.java', entityListenerFile);
+		
+		// Permission Evaluator
+		var permissionEvaluatorFile = serverModulesFolder + this.props.classifiedSingularName + 'PermissionEvaluator.java';
+		this.log('Rendering server entityListenerFile: ' + permissionEvaluatorFile);
+		this.template('server/_Listener.java', permissionEvaluatorFile);
 
 	}
 });
