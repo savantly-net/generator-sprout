@@ -5,7 +5,7 @@ import javax.persistence.EntityListeners;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import co.intnt.modules.recommendation.<%= classifiedSingularName %>Listener;
+import co.intnt.modules.<%= camelizedPluralName %>.<%= classifiedSingularName %>Listener;
 
 import <%= groupId %>.modules.PersistedModule;
 
