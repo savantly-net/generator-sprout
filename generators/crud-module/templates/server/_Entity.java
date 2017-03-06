@@ -10,9 +10,7 @@ import co.intnt.modules.<%= camelizedPluralName %>.<%= classifiedSingularName %>
 import <%= groupId %>.modules.PersistedModule;
 
 @Entity
-@EntityListeners({
-    AuditingEntityListener.class,
-    <%= classifiedSingularName %>Listener.class})
+@EntityListeners({AuditingEntityListener.class})
 public class <%= classifiedSingularName %> extends PersistedModule {
     
     private String name;

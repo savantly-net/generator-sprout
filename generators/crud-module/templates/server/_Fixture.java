@@ -10,7 +10,7 @@ import net.savantly.spring.fixture.Fixture;
 @Service
 public class <%= classifiedSingularName %>Fixture extends AbstractBaseFixture<<%= classifiedSingularName %>, <%= classifiedSingularName %>Repository>{
 
-    public OrganizationFixture(<%= classifiedSingularName %>Repository repository) {
+    public <%= classifiedSingularName %>Fixture(<%= classifiedSingularName %>Repository repository) {
         super(repository);
     }
 
